@@ -1,0 +1,14 @@
+[
+    {
+        "question": "Your favorite programming language",
+        "variants": [
+            "Python", "Java", "C++"
+        ]
+    },
+    {
+        "question": "Your favorite type of pets",
+        "variants": [
+            "Dog", "Cat", "Little brother)", "Parrot"
+        ]
+    }
+]

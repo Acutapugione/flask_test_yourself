@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block main %}
+    <h1>Question #{{number}}: {{quiz.question}}</h1>
+    <label for="question_{{number}}">Choose:</label>
+
+    <select 
+        name="question_{{number}}" 
+        id="question_{{number}}"
+        
+    >
+    <option value="" selected>...</option>
+    {% for item in quiz.variants %}
+        <option value="{{item}}">{{item}}</option>
+    {% endfor %}
+    </select>
+
+    <script>
+        const select_element = document.getElementById("question_{{number}}")
+        
+        select_element.addEventListener("change", (e) => {
+            e.preventDefault()
+            console.log(e.target.value)
+            const jsonData = {
+                "answer": e.target.value.toString(),
+                "number": "{{number}}",
+            };
+            const url = "/quiz/{{number}}"
+            fetch("/quiz", {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(jsonData)
+            })
+            window.location.replace(url)
+        })
+    </script>
+{% endblock %}
